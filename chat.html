@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="Orbitor,business,company,agency,modern,bootstrap4,tech,software">
+  <meta name="author" content="themefisher.com">
+
+  <title>Novena- Health & Care Medical template</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+
+  <!-- bootstrap.min css -->
+  <!-- <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css"> -->
+  <!-- Icon Font Css -->
+  <!-- <link rel="stylesheet" href="plugins/icofont/icofont.min.css"> -->
+  <!-- Slick Slider  CSS -->
+  <!-- <link rel="stylesheet" href="plugins/slick-carousel/slick/slick.css"> -->
+  <!-- <link rel="stylesheet" href="plugins/slick-carousel/slick/slick-theme.css"> -->
+
+  <!-- Main Stylesheet -->
+  <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('C:\Users\manya\Downloads\pexels-karolina-grabowska-4047186.jpg'); /* Add your background image here */
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .chat-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            width: 1000px;
+            max-width: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-header {
+            background-color: #044a30;
+            color: white;
+            padding: 15px;
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+        }
+
+        .chat-box {
+            padding: 20px;
+            height: 400px;
+            overflow-y: auto;
+            border-bottom: 1px solid #fcf9f9;
+        }
+
+        .bot-message, .user-message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+
+        .bot-message {
+            background-color: #f1f1f1;
+            align-self: flex-start;
+        }
+
+        .user-message {
+            background-color: #044a30;
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        #user-input {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color:#044a30;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #161718;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="chat-container">
+        <div class="chat-header">
+            <h2>Healthcare Chatbot</h2>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <div class="bot-message">
+                <p>Hello! How can I assist you today?</p>
+            </div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="Type your message here...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            if (userInput.trim() === "") return;
+
+            // Append user's message to the chat box
+            appendMessage(userInput, 'user-message');
+
+            // Clear the input field
+            document.getElementById('user-input').value = "";
+
+            // Generate bot response
+            setTimeout(() => {
+                const botResponse = getBotResponse(userInput);
+                appendMessage(botResponse, 'bot-message');
+            }, 1000);
+        }
+
+        function appendMessage(message, className) {
+            const messageElement = document.createElement('div');
+            messageElement.className = className;
+            messageElement.innerHTML = `<p>${message}</p>`;
+            document.getElementById('chat-box').appendChild(messageElement);
+            document.getElementById('chat-box').scrollTop = document.getElementById('chat-box').scrollHeight;
+        }
+
+        function getBotResponse(userInput) {
+            // Simple keyword-based responses
+            userInput = userInput.toLowerCase();
+            if (userInput.includes('hello') || userInput.includes('hi')) {
+                return 'Hi there! How can I help you today?';
+            } else if (userInput.includes('appointment')) {
+                return 'You can book an appointment by calling our office at 123-456-7890 or visiting our website.';
+            } else if (userInput.includes('symptoms')) {
+                return 'Please describe your symptoms in detail.';
+            } else if (userInput.includes('thank you') || userInput.includes('thanks')) {
+                return 'You\'re welcome! Is there anything else I can help you with?';
+            } else if (userInput.includes('hours') || userInput.includes('open')) {
+                return 'Our office hours are Monday to Friday, 9 AM to 5 PM.';
+            } else if (userInput.includes('location') || userInput.includes('address')) {
+                return 'We are located at 123 Health St., Wellness City.';
+            } else if (userInput.includes('emergency')) {
+                return 'If this is an emergency, please call 911 or go to the nearest emergency room.';
+            } else if (userInput.includes('services')) {
+                return 'We offer a variety of services including general check-ups, vaccinations, and more. For a full list, please visit our website.';
+            } else if (userInput.includes('insurance')) {
+                return 'We accept a variety of insurance plans. Please call our office at 123-456-7890 to confirm if we accept your insurance.';
+            } else if (userInput.includes('contact')) {
+                return 'You can contact us at 123-456-7890 or email us at contact@healthcare.com.';
+            } else if (userInput.includes('doctor')) {
+                return 'We have several doctors available. Please visit our website to view their profiles and specialties.';
+            } else if (userInput.includes('covid')) {
+                return 'For information about COVID-19, please visit our COVID-19 information page on our website.';
+            } else if (userInput.includes('billing')) {
+                return 'For billing inquiries, please contact our billing department at billing@healthcare.com or call 123-456-7891.';
+            } else if (userInput.includes('test results')) {
+                return 'You can view your test results by logging into our patient portal on our website.';
+            } else if (userInput.includes('prescription')) {
+                return 'For prescription refills, please contact our pharmacy at 123-456-7892 or request a refill through our patient portal.';
+            } else if (userInput.includes('specialist')) {
+                return 'We have specialists in various fields. Please visit our website to find a specialist that suits your needs.';
+            } else if (userInput.includes('vaccination')) {
+                return 'We offer vaccinations for various diseases. Please contact our office to schedule a vaccination appointment.';
+            } else if (userInput.includes('mental health')) {
+                return 'We have mental health services available. Please visit our website to learn more or schedule an appointment with a mental health professional.';
+            } else if (userInput.includes('wellness programs')) {
+                return 'We offer several wellness programs to help you maintain a healthy lifestyle. Please visit our website for more details.';
+            } else if (userInput.includes('lab services')) {
+                return 'Our lab services include blood tests, urine tests, and more. Please contact our office to schedule an appointment.';
+            } else {
+                return 'I\'m sorry, I didn\'t understand that. Can you please rephrase?';
+            }
+        }
+    </script>
+</body>
+</html>
